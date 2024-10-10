@@ -4,13 +4,13 @@ import {
   Row,
   Col,
   ListGroup,
-  Form,
+  //   Form,
   Button,
   Card,
   Image,
 } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -40,7 +40,7 @@ const OrderScreen = () => {
     error: errorPayPal,
   } = useGetPayPalClientIdQuery();
 
-  const { userInfo } = useSelector((state) => state.auth);
+  //   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!errorPayPal && !loadingPayPal && paypal.clientId) {
@@ -135,9 +135,7 @@ const OrderScreen = () => {
                   {order.paymentMethod}
                 </p>
                 {order.isPaid ? (
-                  <Message variant={"success"}>
-                    Paid on {order.paidAt}
-                  </Message>
+                  <Message variant={"success"}>Paid on {order.paidAt}</Message>
                 ) : (
                   <Message variant={"danger"}>Not Paid</Message>
                 )}
