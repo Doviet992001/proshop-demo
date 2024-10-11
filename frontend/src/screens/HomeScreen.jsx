@@ -5,13 +5,22 @@ import Loader from "../components/Loader.jsx";
 import { useGetProductsQuery } from "../slices/productsApiSlice.js";
 import Message from "../components/Message.jsx";
 import Paginate from "../components/Paginate.jsx";
+import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
-  const { pageNumber } = useParams();
-  const { data, isLoading, isError } = useGetProductsQuery({ pageNumber });
+  const { pageNumber, keyword } = useParams();
+  const { data, isLoading, isError } = useGetProductsQuery({
+    keyword,
+    pageNumber,
+  });
 
   return (
     <>
+      {keyword && (
+        <Link to="/" className="btn btn-light mb-4">
+          Go Back
+        </Link>
+      )}
       {isLoading ? (
         <Loader />
       ) : isError ? (
@@ -28,7 +37,11 @@ const HomeScreen = () => {
               </Col>
             ))}
           </Row>
-          <Paginate pages={data.pages} page={data.page} />
+          <Paginate
+            pages={data.pages}
+            page={data.page}
+            keyword={keyword ? keyword : ""}
+          />
         </>
       )}
     </>
