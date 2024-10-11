@@ -4591,6 +4591,7 @@ fieldset:disabled .btn {
 .card-img-top {
   border-top-left-radius: var(--bs-card-inner-border-radius);
   border-top-right-radius: var(--bs-card-inner-border-radius);
+  height: 211px;
 }
 
 .card-img,
